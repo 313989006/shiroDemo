@@ -1,6 +1,7 @@
 package com.example.shiroDemo.controller;
 
 import com.example.shiroDemo.commons.ResponseEntity;
+import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.ui.Model;
@@ -21,6 +22,12 @@ import java.util.Map;
 @RestController
 public class HelloController {
 
+    /**
+    * @Description: 多角色的情况
+    * @Author: ma.kangkang
+    * @Date: 2019/10/10
+    */
+    @RequiresRoles(value = {"","","",""},logical = Logical.OR)
     @RequestMapping("/hello")
     public Map greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
         Map result = new HashMap<>();
