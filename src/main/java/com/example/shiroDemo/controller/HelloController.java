@@ -32,9 +32,9 @@ public class HelloController {
     public Map greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
         Map result = new HashMap<>();
         try {
-            result.putAll(ResponseEntity.responseSuccess("返回 hello"));;
+            result.putAll(ResponseEntity.responseSuccess("返回 hello"));
         }catch (Exception e) {
-            result.putAll(ResponseEntity.responseError());;
+            result.putAll(ResponseEntity.responseError());
         }
         return result;
     }
@@ -44,6 +44,7 @@ public class HelloController {
      * @return
      */
     @RequiresRoles("role")
+    @RequiresPermissions("admin")
     @RequestMapping("/test")
     public Map test() {
         return ResponseEntity.responseSuccess("角色正确,可以请求该方法");
